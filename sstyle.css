@@ -1,0 +1,43 @@
+body{
+margin:0;
+font-family:Arial;
+background:#111;
+color:white;
+}
+
+header{
+background:#222;
+padding:20px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+margin-left:20px;
+}
+
+.hero{
+text-align:center;
+padding:50px;
+}
+
+.hero img{
+width:400px;
+border-radius:15px;
+box-shadow:0 0 30px orange;
+}
+
+section{
+max-width:1000px;
+margin:auto;
+padding:40px;
+}
+
+footer{
+text-align:center;
+padding:30px;
+background:#222;
+}
