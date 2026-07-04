@@ -1,25 +1,25 @@
-/* Плавная прокрутка при нажатии на ссылки */
+/* Плавный скролл по секциям */
 html {
     scroll-behavior: smooth;
-    scroll-padding-top: 90px; /* Отступ сверху, чтобы шапка не перекрывала заголовки */
+    scroll-padding-top: 90px;
 }
 
 body {
     margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #121212;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background-color: #0d0d0d;
     color: #f5f5f5;
     line-height: 1.6;
 }
 
 /* Шапка сайта */
 header {
-    background: rgba(26, 26, 26, 0.95);
-    backdrop-filter: blur(10px); /* Эффект размытия сзади */
+    background: rgba(20, 20, 20, 0.95);
+    backdrop-filter: blur(8px);
     position: sticky;
     top: 0;
     z-index: 100;
-    border-bottom: 2px solid #8b5a2b; /* Коричневая полоса в цвет флага */
+    border-bottom: 2px solid #8b5a2b;
 }
 
 .header-container {
@@ -36,50 +36,48 @@ header {
 .logo {
     font-size: 22px;
     margin: 0;
-    font-weight: bold;
 }
 
 nav a {
     color: #e0e0e0;
     text-decoration: none;
     margin-left: 20px;
-    font-weight: 500;
+    font-weight: bold;
     transition: color 0.3s ease;
 }
 
 nav a:hover {
-    color: #d4a373; /* Цвет при наведении (песочно-коричневый) */
+    color: #3a86ff; /* Синий цвет в тон логотипа ЕПИ */
 }
 
-/* Главный блок (Hero) */
+/* Секция приветствия */
 .hero {
     text-align: center;
-    padding: 60px 20px;
-    background: radial-gradient(circle, #2a1f15 0%, #121212 100%);
+    padding: 50px 20px;
+    background: radial-gradient(circle, #1a1510 0%, #0d0d0d 100%);
 }
 
-/* Уменьшенный и адаптивный флаг */
+/* ФЛАГ СТАЛ МЕНЬШЕ И СТИЛЬНЕЕ */
 .hero-flag {
     width: 100%;
-    max-width: 280px; /* Ограничили размер, теперь он аккуратный */
+    max-width: 260px; /* Уменьшили размер */
     height: auto;
     border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(139, 90, 43, 0.4); /* Мягкое коричневое свечение */
+    box-shadow: 0 8px 25px rgba(139, 90, 43, 0.5);
     transition: transform 0.3s ease;
 }
 
 .hero-flag:hover {
-    transform: scale(1.03); /* Эффект легкого увеличения при наведении */
+    transform: scale(1.05);
 }
 
 .hero h2 {
     font-size: 32px;
-    margin: 20px 0 10px 0;
+    margin: 20px 0 5px;
 }
 
 .hero p {
-    color: #a0a0a0;
-    font-size: 18px;
+    color: #aaa;
     margin: 0;
 }
 
@@ -90,82 +88,101 @@ nav a:hover {
     margin: 0;
 }
 
-/* Разделы страницы */
+/* Общие стили секций */
 section {
     max-width: 900px;
     margin: 0 auto;
-    padding: 60px 20px;
+    padding: 50px 20px;
 }
 
 section h2 {
     font-size: 26px;
-    color: #d4a373;
-    border-left: 4px solid #8b5a2b;
+    color: #e5a93b;
+    border-left: 4px solid #3a86ff;
     padding-left: 15px;
     margin-bottom: 25px;
 }
 
-/* Стилизация блока "О стране" в виде красивых карточек */
+/* Карточки "О стране" */
 .info-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 15px;
 }
 
 .info-card {
-    background: #1e1e1e;
-    padding: 15px 20px;
+    background: #161616;
+    padding: 15px;
     border-radius: 8px;
-    border: 1px solid #2d2d2d;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
+    border: 1px solid #252525;
 }
 
 .info-card strong {
-    color: #a0a0a0;
-    font-size: 14px;
+    color: #888;
+    display: block;
+    font-size: 13px;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
 }
 
 .info-card span {
     font-size: 18px;
-    font-weight: 600;
+    font-weight: bold;
 }
 
-/* Блок партии */
-.party-card {
-    background: linear-gradient(135deg, #1e1e1e 0%, #2a1f15 100%);
+/* Выделение Котизма */
+.info-card.highlight {
+    background: linear-gradient(135deg, #161616 0%, #201710 100%);
+    border: 1px solid #8b5a2b;
+}
+.info-card.highlight span {
+    color: #e5a93b;
+}
+
+/* Раздел ЕПИ с логотипом */
+.party-container {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    background: #111424; /* Темно-синий оттенок под цвет логотипа */
     padding: 25px;
-    border-radius: 10px;
-    border-right: 4px solid #8b5a2b;
+    border-radius: 12px;
+    border: 1px solid #1e295d;
 }
 
-/* Подвал */
+.party-logo {
+    width: 140px; /* Аккуратный круглый логотип партии */
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #3a86ff;
+}
+
+.party-text {
+    flex: 1;
+}
+
+/* Футер */
 footer {
     text-align: center;
-    padding: 40px 20px;
-    background: #1a1a1a;
-    color: #777;
-    font-size: 14px;
-    border-top: 1px solid #2d2d2d;
-    margin-top: 50px;
+    padding: 30px;
+    background: #111;
+    color: #666;
+    border-top: 1px solid #222;
 }
 
-/* Адаптивность для мобильных устройств */
-@media (max-width: 600px) {
+/* Мобильная адаптация */
+@media (max-width: 650px) {
     .header-container {
         flex-direction: column;
-        text-align: center;
     }
     nav {
-        display: flex;
-        gap: 10px;
-        justify-content: center;
-        flex-wrap: wrap;
+        margin-top: 5px;
     }
     nav a {
-        margin: 0 5px;
+        margin: 0 10px;
+    }
+    .party-container {
+        flex-direction: column;
+        text-align: center;
     }
 }
