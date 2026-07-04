@@ -122,28 +122,51 @@
             border: 1px solid #222224;
             margin-top: 20px;
         }
-        .assistant-img-wrapper {
-            max-width: 450px; /* Фото не будет гигантским на смартфонах */
-            width: 100%;
-            margin: 0 auto 15px;
+        .assistant-img-wrapper { max-width: 450px; width: 100%; margin: 0 auto 15px; }
+        .assistant-img { width: 100%; height: auto; border-radius: 12px; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5); border: 1px solid #333; }
+        .gallery-container h3 { color: #e5a93b; margin: 10px 0 5px; font-size: 20px; }
+        .gallery-container p { color: #a1a1a6; font-size: 14px; line-height: 1.5; margin: 0; }
+
+        /* СТИЛИ ИСТОРИИ (ТАЙМЛАЙН) */
+        .timeline {
+            position: relative;
+            margin-top: 30px;
+            padding-left: 20px;
+            border-left: 2px solid #8b5a2b;
         }
-        .assistant-img {
-            width: 100%;
-            height: auto;
-            border-radius: 12px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
-            border: 1px solid #333;
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
         }
-        .gallery-container h3 {
-            color: #e5a93b;
-            margin: 10px 0 5px;
-            font-size: 20px;
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -27px;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            background-color: #e5a93b;
+            border-radius: 50%;
+            border: 2px solid #0d0d0c;
         }
-        .gallery-container p {
-            color: #a1a1a6;
+        .timeline-date {
+            font-weight: 700;
+            color: #3a86ff;
             font-size: 14px;
-            line-height: 1.5;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+        .timeline-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin: 0 0 8px 0;
+            color: #fff;
+        }
+        .timeline-desc {
+            color: #a1a1a6;
+            font-size: 15px;
             margin: 0;
+            line-height: 1.5;
         }
 
         footer { text-align: center; padding: 30px; color: #68686e !important; font-size: 13px; border-top: 1px solid #1c1c1e !important; margin-top: 60px; }
@@ -203,13 +226,13 @@
             <h2>Единая Партия Идиаканта</h2>
             
             <div class="party-card">
-                <p><strong>Единая Партия Идиаканта (ЕПИ)</strong> — ведущая политическая сила государства, твёрдо стоящая на страже суверенитета и процветания нашей Родины.</p>
+                <p><strong>Единая Партия Идиаканта (ЕПИ)</strong> — ведущая political сила государства, твёрдо стоящая на страже суверенитета и процветания нашей Родины.</p>
                 <p>Главный вектор партии направлен на полную защиту национальных интересов, масштабное развитие оборонной авиации и поддержание нерушимого порядка на улицах Идиаграда.</p>
             </div>
         </div>
     </div>
 
-    <!-- ВКЛАДКА 3: ГАЛЕРЕЯ (ОБНОВЛЕННАЯ) -->
+    <!-- ВКЛАДКА 3: ГАЛЕРЕЯ -->
     <div id="gallery-tab" class="tab-content">
         <section>
             <h2>Галерея Республики</h2>
@@ -224,11 +247,30 @@
         </section>
     </div>
 
-    <!-- ВКЛАДКА 4: ИСТОРИЯ -->
+    <!-- ВКЛАДКА 4: ИСТОРИЯ (ТЕПЕРЬ ЗАПОЛНЕНА!) -->
     <div id="history-tab" class="tab-content">
         <section>
             <h2>История Идиаканта</h2>
-            <p>Великая история становления Котизма и объединения земель Республики под предводительством наших мудрых и решительных лидеров.</p>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">Эпоха Основания</div>
+                    <h3 class="timeline-title">Зарождение Котизма</h3>
+                    <p class="timeline-desc">Древние племена здешних земель объединились вокруг Первого Кота в черных очках. Именно тогда были заложены основы Котизма — идеологии свободы, порядка, величия и безупречного стиля.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">Великий Альянс</div>
+                    <h3 class="timeline-title">Прибытие Главного Помощника</h3>
+                    <p class="timeline-desc">В период внешних угроз на помощь Республике прибыл легендарный Оранжевый Стикмен. Заключив Великий Альянс с Кошачьей Гвардией, он возглавил объединенные блоки и навсегда закрепил за собой статус Главного помощника Лидера.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">Современность (2026)</div>
+                    <h3 class="timeline-title">Создание ЕПИ и Модернизация</h3>
+                    <p class="timeline-desc">Сформирована Единая Партия Идиаканта (ЕПИ). Под её руководством Идиаград превратился в неприступную цифровую крепость. Были запущены современные штурмовики ВВС, а валюта Иди укрепилась на мировой арене.</p>
+                </div>
+            </div>
         </section>
     </div>
 </main>
