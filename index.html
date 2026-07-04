@@ -26,15 +26,24 @@
         }
 
         .header-container {
-            max-width: 1050px;
+            max-width: 1150px;
             margin: 0 auto;
             padding: 15px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
         }
 
         .logo { font-size: 20px; margin: 0; font-weight: 700; }
+
+        .nav-and-player {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
 
         nav button {
             background: none !important;
@@ -42,7 +51,7 @@
             color: #a1a1a6 !important;
             font-weight: 600;
             font-size: 15px;
-            margin-left: 15px;
+            margin-left: 10px;
             cursor: pointer;
             padding: 5px 0;
             font-family: inherit;
@@ -55,6 +64,56 @@
         }
         nav button.active {
             border-bottom: 2px solid #3a86ff !important;
+        }
+
+        /* Стильный Культурный Аудиоплеер */
+        .cultural-player {
+            background: #1c1c1e;
+            border: 1px solid rgba(229, 169, 59, 0.3);
+            padding: 6px 12px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .cultural-player select {
+            background: #2c2c2e;
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            padding: 4px 8px;
+            font-size: 12px;
+            cursor: pointer;
+            outline: none;
+            max-width: 120px;
+        }
+
+        .player-btn {
+            background: #e5a93b;
+            color: #0d0d0c;
+            border: none;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 12px;
+            transition: transform 0.2s, background 0.2s;
+        }
+        .player-btn:hover {
+            transform: scale(1.05);
+            background: #f1b957;
+        }
+
+        .volume-slider {
+            width: 60px;
+            accent-color: #e5a93b;
+            cursor: pointer;
         }
 
         /* Контейнер для вкладок */
@@ -299,8 +358,9 @@
 
         footer { text-align: center; padding: 30px; color: #68686e !important; font-size: 13px; border-top: 1px solid #1c1c1e !important; margin-top: 60px; }
 
-        @media (max-width: 768px) {
-            .header-container { flex-direction: column; gap: 10px; }
+        @media (max-width: 900px) {
+            .header-container { flex-direction: column; align-items: center; text-align: center; }
+            .nav-and-player { flex-direction: column; width: 100%; gap: 10px; }
             nav button { margin: 0 4px; font-size: 13px; }
             .gov-leadership-grid { grid-template-columns: 1fr; }
         }
@@ -311,13 +371,27 @@
 <header>
     <div class="header-container">
         <h1 class="logo">🇮🇩 Республика Идиакантия</h1>
-        <nav>
-            <button class="nav-btn active" onclick="openTab('country-tab', this)">О стране</button>
-            <button class="nav-btn" onclick="openTab('party-tab', this)">ЕПИ</button>
-            <button class="nav-btn" onclick="openTab('gov-tab', this)">Правительство</button>
-            <button class="nav-btn" onclick="openTab('gallery-tab', this)">Галерея</button>
-            <button class="nav-btn" onclick="openTab('history-tab', this)">История</button>
-        </nav>
+        <div class="nav-and-player">
+            <nav>
+                <button class="nav-btn active" onclick="openTab('country-tab', this)">О стране</button>
+                <button class="nav-btn" onclick="openTab('party-tab', this)">ЕПИ</button>
+                <button class="nav-btn" onclick="openTab('gov-tab', this)">Правительство</button>
+                <button class="nav-btn" onclick="openTab('gallery-tab', this)">Галерея</button>
+                <button class="nav-btn" onclick="openTab('history-tab', this)">История</button>
+            </nav>
+            
+            <div class="cultural-player">
+                <span style="font-size: 12px; color: #e5a93b; font-weight: bold;">📻 Культура:</span>
+                <select id="track-select" onchange="changeTrack()">
+                    <option value="11.m4a">Гимн Идиакантии</option>
+                    <option value="12.m4a">Культурный гид</option>
+                    <option value="13.m4a">Патриотический марш</option>
+                </select>
+                <button id="play-pause-btn" class="player-btn" onclick="togglePlay()">▶</button>
+                <input type="range" class="volume-slider" min="0" max="1" step="0.1" value="0.5" oninput="setVolume(this.value)">
+                <audio id="global-audio" src="11.m4a"></audio>
+            </div>
+        </div>
     </div>
 </header>
 
@@ -442,7 +516,7 @@
                 </div>
                 <div class="founder-card">
                     <div class="founder-img-wrapper"><img src="1000068262.jpg" alt="Boeing" class="founder-img"></div>
-                    <h3>Ᏼᴏᴇing 737-800</h3>
+                    <h3>BoxLayout Ᏼᴏᴇing 737-800</h3>
                     <div class="founder-role">Главнокомандующий ВВС</div>
                     <p class="founder-desc">Обеспечивает стратегическое превосходство в воздушном пространстве.</p>
                 </div>
@@ -502,11 +576,40 @@
 </footer>
 
 <script>
+    // Инициализация аудио элемента
+    const audioPlayer = document.getElementById('global-audio');
+    audioPlayer.volume = 0.5;
+
+    function togglePlay() {
+        const btn = document.getElementById('play-pause-btn');
+        if (audioPlayer.paused) {
+            audioPlayer.play();
+            btn.innerText = "⏸";
+        } else {
+            audioPlayer.pause();
+            btn.innerText = "▶";
+        }
+    }
+
+    function changeTrack() {
+        const select = document.getElementById('track-select');
+        const btn = document.getElementById('play-pause-btn');
+        
+        audioPlayer.src = select.value;
+        if (btn.innerText === "⏸") {
+            audioPlayer.play();
+        }
+    }
+
+    function setVolume(val) {
+        audioPlayer.volume = val;
+    }
+
     // База данных для интерактивных карточек со стандартными названиями фото
     const infoData = {
         capital: {
             title: "Столица: Идиаград",
-            img: "IMG_20260704_230320_701.jpg", // Тут тоже обновил для модального окна на главной
+            img: "IMG_20260704_230320_701.jpg", 
             text: "<p><strong>Идиаград</strong> — сердце нашей Республики, ультрасовременный мегаполис и технологический центр страны. Город спроектирован лучшими архитекторами под руководством Министерства Строительства.</p><p>Здесь гармонично сочетаются монументальные правительственные здания, передовые серверные станции обеспечения связи и зелёные парковые зоны для отдыха граждан.</p>"
         },
         language: {
@@ -527,7 +630,7 @@
         ideology: {
             title: "Государственная идеология: Котизма",
             img: "ideology.jpg",
-            text: "<p><strong>Котизм</strong> — фундаментальная философская и государственная доктрина Идиакантии, выражающаяся в <strong>почитании котов</strong>.</p><p>В её основе лежат принципы всеобщего цифрового равенства, защиты прав каждого жителя, поддержания нерушимого порядка, стремления к технологическому прогрессу, а также искреннее почтение к историческому наследию Первого Кота.</p>"
+            text: "<p><strong>Котизма</strong> — фундаментальная философская и государственная доктрина Идиакантии, выражающаяся в <strong>почитании котов</strong>.</p><p>В её основе лежат принципы всеобщего цифрового равенства, защиты прав каждого жителя, поддержания нерушимого порядка, стремления к технологическому прогрессу, а также искреннее почтение к историческому наследию Первого Кота.</p>"
         }
     };
 
