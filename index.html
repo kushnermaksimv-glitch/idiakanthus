@@ -59,7 +59,7 @@
 
         /* Контейнер для вкладок */
         .tab-content {
-            display: none; /* По умолчанию всё скрыто */
+            display: none; 
             opacity: 0;
             transform: translateY(15px);
             transition: opacity 0.4s ease, transform 0.4s ease;
@@ -99,10 +99,7 @@
         .info-card.highlight span { color: #e5a93b !important; }
 
         /* Стили Страницы Партии */
-        .party-page {
-            text-align: center;
-            padding: 40px 20px;
-        }
+        .party-page { text-align: center; padding: 40px 20px; }
         .party-logo-wrapper { max-width: 140px !important; margin: 0 auto 20px !important; }
         .party-logo { width: 100% !important; height: auto !important; border-radius: 50% !important; border: 3px solid #3a86ff !important; box-shadow: 0 10px 30px rgba(58, 134, 255, 0.3) !important; }
         
@@ -116,11 +113,45 @@
         }
         .party-card p { font-size: 16px; color: #e3e3e8 !important; line-height: 1.6; }
 
+        /* Стили новой Галереи с Помощником */
+        .gallery-container {
+            text-align: center;
+            background: #141416;
+            padding: 25px;
+            border-radius: 16px;
+            border: 1px solid #222224;
+            margin-top: 20px;
+        }
+        .assistant-img-wrapper {
+            max-width: 450px; /* Фото не будет гигантским на смартфонах */
+            width: 100%;
+            margin: 0 auto 15px;
+        }
+        .assistant-img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+            border: 1px solid #333;
+        }
+        .gallery-container h3 {
+            color: #e5a93b;
+            margin: 10px 0 5px;
+            font-size: 20px;
+        }
+        .gallery-container p {
+            color: #a1a1a6;
+            font-size: 14px;
+            line-height: 1.5;
+            margin: 0;
+        }
+
         footer { text-align: center; padding: 30px; color: #68686e !important; font-size: 13px; border-top: 1px solid #1c1c1e !important; margin-top: 60px; }
 
         @media (max-width: 600px) {
             .header-container { flex-direction: column; gap: 10px; }
             nav button { margin: 0 5px; font-size: 14px; }
+            .gallery-container { padding: 15px; }
         }
     </style>
 </head>
@@ -139,6 +170,7 @@
 </header>
 
 <main>
+    <!-- ВКЛАДКА 1: О СТРАНЕ -->
     <div id="country-tab" class="tab-content active">
         <div class="hero">
             <div class="flag-wrapper">
@@ -154,7 +186,7 @@
             <h2>О стране</h2>
             <div class="info-grid">
                 <div class="info-card"><strong>Столица:</strong> <span>Идиаград</span></div>
-                <div class="info-grid"><strong>Язык:</strong> <span>Идиакантский</span></div>
+                <div class="info-card"><strong>Язык:</strong> <span>Идиакантский</span></div>
                 <div class="info-card"><strong>Валюта:</strong> <span>Иди</span></div>
                 <div class="info-card"><strong>Форма правления:</strong> <span>Республика</span></div>
                 <div class="info-card highlight"><strong>Идеология:</strong> <span>Котизм 🐾</span></div>
@@ -162,6 +194,7 @@
         </section>
     </div>
 
+    <!-- ВКЛАДКА 2: ЕПИ -->
     <div id="party-tab" class="tab-content">
         <div class="party-page">
             <div class="party-logo-wrapper">
@@ -176,13 +209,22 @@
         </div>
     </div>
 
+    <!-- ВКЛАДКА 3: ГАЛЕРЕЯ (ОБНОВЛЕННАЯ) -->
     <div id="gallery-tab" class="tab-content">
         <section>
             <h2>Галерея Республики</h2>
-            <p>Раздел находится в наполнении министерством культуры Идиаканта. Скоро здесь появятся фотографии ключевых достижений государства.</p>
+            
+            <div class="gallery-container">
+                <div class="assistant-img-wrapper">
+                    <img src="1000068255.jpg" alt="Главный Помощник Лидера" class="assistant-img">
+                </div>
+                <h3>Главный помощник лидера Республики</h3>
+                <p>Официальный исторический снимок: Верховный Помощник (Оранжевый Стикмен) мобилизует верные Республике отряды для защиты рубежей Идиаканта и идеалов Котизма.</p>
+            </div>
         </section>
     </div>
 
+    <!-- ВКЛАДКА 4: ИСТОРИЯ -->
     <div id="history-tab" class="tab-content">
         <section>
             <h2>История Идиаканта</h2>
@@ -197,20 +239,16 @@
 
 <script>
     function openTab(tabId, button) {
-        // Скрываем все вкладки
         const tabs = document.querySelectorAll('.tab-content');
         tabs.forEach(tab => tab.classList.remove('active'));
 
-        // Убираем активный класс у всех кнопок в меню
         const buttons = document.querySelectorAll('.nav-btn');
         buttons.forEach(btn => btn.classList.remove('active'));
 
-        // Показываем нужную вкладку и подсвечиваем кнопку
         const activeTab = document.getElementById(tabId);
         activeTab.classList.add('active');
         button.classList.add('active');
 
-        // Скроллим наверх страницы при переключении
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 </script>
