@@ -63,7 +63,7 @@
             opacity: 0;
             transform: translateY(15px);
             transition: opacity 0.4s ease, transform 0.4s ease;
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             padding: 20px;
         }
@@ -113,68 +113,66 @@
         }
         .party-card p { font-size: 16px; color: #e3e3e8 !important; line-height: 1.6; }
 
-        /* Стили новой Галереи с Помощником */
-        .gallery-container {
-            text-align: center;
+        /* СТИЛИ ГАЛЕРЕИ С ОТЦАМИ-ОСНОВАТЕЛЯМИ */
+        .assistant-box {
             background: #141416;
-            padding: 25px;
+            padding: 20px;
             border-radius: 16px;
             border: 1px solid #222224;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .assistant-img-wrapper { max-width: 400px; width: 100%; margin: 0 auto 15px; }
+        .assistant-img { width: 100%; height: auto; border-radius: 12px; border: 1px solid #333; }
+        
+        .founders-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
             margin-top: 20px;
         }
-        .assistant-img-wrapper { max-width: 450px; width: 100%; margin: 0 auto 15px; }
-        .assistant-img { width: 100%; height: auto; border-radius: 12px; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5); border: 1px solid #333; }
-        .gallery-container h3 { color: #e5a93b; margin: 10px 0 5px; font-size: 20px; }
-        .gallery-container p { color: #a1a1a6; font-size: 14px; line-height: 1.5; margin: 0; }
+        .founder-card {
+            background: #161617;
+            border: 1px solid #222224;
+            border-radius: 14px;
+            padding: 15px;
+            text-align: center;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+        .founder-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(58, 134, 255, 0.4);
+        }
+        .founder-img-wrapper {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            border-radius: 10px;
+            margin-bottom: 12px;
+            background: #000;
+        }
+        .founder-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .founder-card h3 { margin: 10px 0 4px; font-size: 18px; color: #fff; }
+        .founder-role { color: #e5a93b; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+        .founder-desc { color: #a1a1a6; font-size: 14px; margin: 0; line-height: 1.4; }
 
         /* СТИЛИ ИСТОРИИ (ТАЙМЛАЙН) */
-        .timeline {
-            position: relative;
-            margin-top: 30px;
-            padding-left: 20px;
-            border-left: 2px solid #8b5a2b;
-        }
-        .timeline-item {
-            position: relative;
-            margin-bottom: 30px;
-        }
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -27px;
-            top: 5px;
-            width: 12px;
-            height: 12px;
-            background-color: #e5a93b;
-            border-radius: 50%;
-            border: 2px solid #0d0d0c;
-        }
-        .timeline-date {
-            font-weight: 700;
-            color: #3a86ff;
-            font-size: 14px;
-            text-transform: uppercase;
-            margin-bottom: 5px;
-        }
-        .timeline-title {
-            font-size: 18px;
-            font-weight: 600;
-            margin: 0 0 8px 0;
-            color: #fff;
-        }
-        .timeline-desc {
-            color: #a1a1a6;
-            font-size: 15px;
-            margin: 0;
-            line-height: 1.5;
-        }
+        .timeline { position: relative; margin-top: 30px; padding-left: 20px; border-left: 2px solid #8b5a2b; }
+        .timeline-item { position: relative; margin-bottom: 30px; }
+        .timeline-item::before { content: ''; position: absolute; left: -27px; top: 5px; width: 12px; height: 12px; background-color: #e5a93b; border-radius: 50%; border: 2px solid #0d0d0c; }
+        .timeline-date { font-weight: 700; color: #3a86ff; font-size: 14px; text-transform: uppercase; margin-bottom: 5px; }
+        .timeline-title { font-size: 18px; font-weight: 600; margin: 0 0 8px 0; color: #fff; }
+        .timeline-desc { color: #a1a1a6; font-size: 15px; margin: 0; line-height: 1.5; }
 
         footer { text-align: center; padding: 30px; color: #68686e !important; font-size: 13px; border-top: 1px solid #1c1c1e !important; margin-top: 60px; }
 
         @media (max-width: 600px) {
             .header-container { flex-direction: column; gap: 10px; }
             nav button { margin: 0 5px; font-size: 14px; }
-            .gallery-container { padding: 15px; }
         }
     </style>
 </head>
@@ -226,47 +224,102 @@
             <h2>Единая Партия Идиаканта</h2>
             
             <div class="party-card">
-                <p><strong>Единая Партия Идиаканта (ЕПИ)</strong> — ведущая political сила государства, твёрдо стоящая на страже суверенитета и процветания нашей Родины.</p>
+                <p><strong>Единая Партия Идиаканта (ЕПИ)</strong> — ведущая политическая сила государства, твёрдо стоящая на страже суверенитета и процветания нашей Родины.</p>
                 <p>Главный вектор партии направлен на полную защиту национальных интересов, масштабное развитие оборонной авиации и поддержание нерушимого порядка на улицах Идиаграда.</p>
             </div>
         </div>
     </div>
 
-    <!-- ВКЛАДКА 3: ГАЛЕРЕЯ -->
+    <!-- ВКЛАДКА 3: ГАЛЕРЕЯ (ЗАЛ СЛАВЫ ОСНОВАТЕЛЕЙ) -->
     <div id="gallery-tab" class="tab-content">
         <section>
-            <h2>Галерея Республики</h2>
+            <h2>Зал славы Республики</h2>
             
-            <div class="gallery-container">
+            <!-- Главный помощник сверху -->
+            <div class="assistant-box">
                 <div class="assistant-img-wrapper">
                     <img src="1000068255.jpg" alt="Главный Помощник Лидера" class="assistant-img">
                 </div>
                 <h3>Главный помощник лидера Республики</h3>
-                <p>Официальный исторический снимок: Верховный Помощник (Оранжевый Стикмен) мобилизует верные Республике отряды для защиты рубежей Идиаканта и идеалов Котизма.</p>
+                <p style="color: #a1a1a6; margin: 0; font-size: 14px;">Верховный Помощник (Оранжевый Стикмен), мобилизующий отряды на защиту рубежей Идиаканта.</p>
+            </div>
+
+            <h2 style="font-size: 20px; color: #fff; border-left: 4px solid #e5a93b;">Те, кто помогал в создании государства</h2>
+            
+            <!-- Сетка отцов-основателей -->
+            <div class="founders-grid">
+                
+                <!-- Банана кот -->
+                <div class="founder-card">
+                    <div class="founder-img-wrapper">
+                        <img src="1000068258.jpg" alt="Банана кот" class="founder-img">
+                    </div>
+                    <h3>Банана кот</h3>
+                    <div class="founder-role">Главный идеолог стиля</div>
+                    <p class="founder-desc">Внёс неоценимый вклад в культурный код нации и укрепил неповторимый вайб Котизма.</p>
+                </div>
+
+                <!-- 4Orochka -->
+                <div class="founder-card">
+                    <div class="founder-img-wrapper">
+                        <img src="1000068259.jpg" alt="4Orochka" class="founder-img">
+                    </div>
+                    <h3>4Orochka ⁴²братуха!!!</h3>
+                    <div class="founder-role">Главный архитектор</div>
+                    <p class="founder-desc">Спроектировал пиксельные основы Идиаграда и вдохновил народ на великие стройки.</p>
+                </div>
+
+                <!-- Матроскин -->
+                <div class="founder-card">
+                    <div class="founder-img-wrapper">
+                        <img src="1000068260.jpg" alt="Матроскин" class="founder-img">
+                    </div>
+                    <h3>Матроскин</h3>
+                    <div class="founder-role">Министр Обороны</div>
+                    <p class="founder-desc">Возглавил Кошачью Гвардию, обеспечив надёжный тыл и строгий порядок в государстве.</p>
+                </div>
+
+                <!-- Игорь -->
+                <div class="founder-card">
+                    <div class="founder-img-wrapper">
+                        <img src="1000068261.jpg" alt="Игорь" class="founder-img">
+                    </div>
+                    <h3>Игорь</h3>
+                    <div class="founder-role">Маршал Военно-Морских Сил</div>
+                    <p class="founder-desc">Создатель непобедимого флота. Охраняет водные границы вместе со своим боевым тюленем.</p>
+                </div>
+
+                <!-- Boeing -->
+                <div class="founder-card">
+                    <div class="founder-img-wrapper">
+                        <img src="1000068262.jpg" alt="Boeing" class="founder-img">
+                    </div>
+                    <h3>Ᏼᴏᴇing 737-800</h3>
+                    <div class="founder-role">Командующий ВВС</div>
+                    <p class="founder-desc">Обеспечил полное превосходство Республики в воздухе, заложив основу мощной авиации ЕПИ.</p>
+                </div>
+
             </div>
         </section>
     </div>
 
-    <!-- ВКЛАДКА 4: ИСТОРИЯ (ТЕПЕРЬ ЗАПОЛНЕНА!) -->
+    <!-- ВКЛАДКА 4: ИСТОРИЯ -->
     <div id="history-tab" class="tab-content">
         <section>
             <h2>История Идиаканта</h2>
-            
             <div class="timeline">
                 <div class="timeline-item">
                     <div class="timeline-date">Эпоха Основания</div>
                     <h3 class="timeline-title">Зарождение Котизма</h3>
                     <p class="timeline-desc">Древние племена здешних земель объединились вокруг Первого Кота в черных очках. Именно тогда были заложены основы Котизма — идеологии свободы, порядка, величия и безупречного стиля.</p>
                 </div>
-
                 <div class="timeline-item">
                     <div class="timeline-date">Великий Альянс</div>
                     <h3 class="timeline-title">Прибытие Главного Помощника</h3>
-                    <p class="timeline-desc">В период внешних угроз на помощь Республике прибыл легендарный Оранжевый Стикмен. Заключив Великий Альянс с Кошачьей Гвардией, он возглавил объединенные блоки и навсегда закрепил за собой статус Главного помощника Лидера.</p>
+                    <p class="timeline-desc">В период внешних угроз на помощь Республике прибыл легендарный Оранжевый Стикмен. Заключив Великий Альянс с Кошачьей Гвардией, он возглавел объединенные блоки и навсегда закрепил за собой статус Главного помощника Лидера.</p>
                 </div>
-
                 <div class="timeline-item">
-                    <div class="timeline-date">Современность (2026)</div>
+                    <div class="timeline-date">Современность</div>
                     <h3 class="timeline-title">Создание ЕПИ и Модернизация</h3>
                     <p class="timeline-desc">Сформирована Единая Партия Идиаканта (ЕПИ). Под её руководством Идиаград превратился в неприступную цифровую крепость. Были запущены современные штурмовики ВВС, а валюта Иди укрепилась на мировой арене.</p>
                 </div>
