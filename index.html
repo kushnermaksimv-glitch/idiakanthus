@@ -92,7 +92,7 @@
 
         .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; }
         
-        /* ВСЕ КАРТОЧКИ ТЕПЕРЬ КЛИКАБЕЛЬНЫЕ */
+        /* Кликабельные карточки на главной */
         .info-card { 
             background: #161617 !important; 
             padding: 15px !important; 
@@ -109,7 +109,7 @@
         .info-card strong { color: #86868b !important; display: block; font-size: 11px; text-transform: uppercase; margin-bottom: 4px; }
         .info-card span { font-size: 16px; font-weight: 600; color: #fff !important; }
         
-        /* Выделенная карточка Идеологии */
+        /* Карточка Идеологии */
         .info-card.highlight { 
             background: linear-gradient(135deg, #161617 0%, #241a10 100%) !important; 
             border: 1px solid rgba(229, 169, 59, 0.4) !important; 
@@ -120,7 +120,7 @@
         }
         .info-card.highlight span { color: #e5a93b !important; }
 
-        /* УНИВЕРСАЛЬНОЕ МОДАЛЬНОЕ ОКНО */
+        /* Универсальное модальное окно */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -184,7 +184,7 @@
         .modal-content h3 { margin: 5px 0; color: #e5a93b; font-size: 22px; }
         .modal-content p { color: #a1a1a6; font-size: 14px; line-height: 1.5; margin: 10px 0 0; text-align: left; }
 
-        /* Стили Страницы Партии */
+        /* Страница Партии */
         .party-page { text-align: center; padding: 40px 20px; }
         .party-logo-wrapper { max-width: 140px !important; margin: 0 auto 20px !important; }
         .party-logo { width: 100% !important; height: auto !important; border-radius: 50% !important; border: 3px solid #3a86ff !important; box-shadow: 0 10px 30px rgba(58, 134, 255, 0.3) !important; }
@@ -199,7 +199,7 @@
         }
         .party-card p { font-size: 16px; color: #e3e3e8 !important; line-height: 1.6; }
 
-        /* СТИЛИ ВКЛАДКИ ПРАВИТЕЛЬСТВО */
+        /* Вкладка Правительство */
         .gov-leadership-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
@@ -255,7 +255,7 @@
         .founder-role { color: #e5a93b; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
         .founder-desc { color: #a1a1a6; font-size: 13px; margin: 0; line-height: 1.4; }
 
-        /* СТИЛИ ГАЛЕРЕИ ГОРОДА */
+        /* Галерея */
         .city-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -283,7 +283,7 @@
         .city-card-info h4 { margin: 0 0 5px 0; color: #fff; font-size: 16px; }
         .city-card-info p { margin: 0; color: #86868b; font-size: 13px; }
 
-        /* СТИЛИ ИСТОРИИ (ТАЙМЛАЙН) */
+        /* История */
         .timeline { position: relative; margin-top: 30px; padding-left: 20px; border-left: 2px solid #8b5a2b; }
         .timeline-item { position: relative; margin-bottom: 30px; }
         .timeline-item::before { content: ''; position: absolute; left: -27px; top: 5px; width: 12px; height: 12px; background-color: #e5a93b; border-radius: 50%; border: 2px solid #0d0d0c; }
@@ -496,31 +496,31 @@
 </footer>
 
 <script>
-    // База данных для интерактивных карточек с реальными файлами фото
+    // База данных для интерактивных карточек со стандартными названиями фото
     const infoData = {
         capital: {
             title: "Столица: Идиаград",
-            img: "1000068298.jpg", // Скриншот вашей карточки панели
+            img: "idiagrad.jpg",
             text: "<p><strong>Идиаград</strong> — сердце нашей Республики, ультрасовременный мегаполис и технологический центр страны. Город спроектирован лучшими архитекторами под руководством Министерства Строительства.</p><p>Здесь гармонично сочетаются монументальные правительственные здания, передовые серверные станции обеспечения связи и зелёные парковые зоны для отдыха граждан.</p>"
         },
         language: {
             title: "Государственный язык",
-            img: "1000068258.jpg", // Используем фото Первого Кота
+            img: "language.png",
             text: "<p><strong>Идиакантский язык</strong> — официальный язык общения в Республике Идиакантия.</p><p>Он олицетворяет культурную идентичность нашего народа, отличается высокой точностью формулировок и используется во всех государственных структурах, законодательных актах Государственной Думы и образовательных учреждениях.</p>"
         },
         currency: {
             title: "Национальная валюта: Идиакантий",
-            img: "idiakanti_currency.png", // Ваша банкнота
+            img: "idiakanti_currency.png",
             text: "<p><strong>«Идиакантий»</strong> — стабильное платёжное средство нашей Республики. Валюта полностью обеспечена золотовалютным фондом и мощностью оборонного комплекса страны.</p><p>На лицевой стороне банкноты номиналом 100 Идиакантиев изображён Первый Кот в очках. Купюра имеет высшую степень защиты от подделок.</p>"
         },
         goverment: {
             title: "Форма правления: Республика",
-            img: "1000068255.jpg", // Фото Депутата Оранжа и команды Майнкрафт
+            img: "government.jpg",
             text: "<p>Республиканский строй Идиакантии базируется на четком разделении властей и эффективном народном представительстве.</p><p>Законодательные функции исполняет Государственная Дума во главе с Председателем Банана Котом, а исполнительная власть и связь с общественностью координируются Комитетами под надзором Депутата Оранжа.</p>"
         },
         ideology: {
             title: "Государственная идеология: Котизм",
-            img: "1000068260.jpg", // Фото Матроскина на фоне флага
+            img: "ideology.jpg",
             text: "<p><strong>Котизм</strong> — фундаментальная философская и государственная доктрина Идиакантии, выражающаяся в <strong>почитании котов</strong>.</p><p>В её основе лежат принципы всеобщего цифрового равенства, защиты прав каждого жителя, поддержания нерушимого порядка, стремления к технологическому прогрессу, а также искреннее почтение к историческому наследию Первого Кота.</p>"
         }
     };
