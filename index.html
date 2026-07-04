@@ -4,7 +4,228 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Республика Идиакант</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Жесткий сброс старых стилей и фона */
+        html, body {
+            background-color: #0d0d0c !important;
+            color: #f5f5f7 !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Arial, sans-serif !important;
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+
+        /* Шапка сайта */
+        header {
+            background: rgba(18, 18, 18, 0.9) !important;
+            backdrop-filter: blur(15px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(139, 90, 43, 0.3) !important;
+        }
+
+        .header-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 20px;
+            margin: 0;
+            font-weight: 700;
+        }
+
+        nav a {
+            color: #a1a1a6 !important;
+            text-decoration: none !important;
+            margin-left: 20px;
+            font-weight: 600;
+            font-size: 15px;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #3a86ff !important;
+        }
+
+        /* Главный блок с флагом */
+        .hero {
+            text-align: center !important;
+            padding: 50px 20px 30px !important;
+            background: radial-gradient(circle at top, #221810 0%, #0d0d0c 70%) !important;
+        }
+
+        /* ОГРАНИЧЕНИЕ ДЛЯ ФЛАГА */
+        .flag-wrapper {
+            max-width: 200px !important; /* Флаг теперь ТОЧНО маленький */
+            margin: 0 auto 15px !important;
+        }
+
+        .hero-flag {
+            width: 100% !important;
+            height: auto !important;
+            border-radius: 12px !important;
+            box-shadow: 0 10px 25px rgba(139, 90, 43, 0.4) !important;
+            transition: transform 0.4s ease;
+        }
+
+        .hero-flag:hover {
+            transform: scale(1.05);
+        }
+
+        .hero h2 {
+            font-size: 26px !important;
+            margin: 15px 0 5px !important;
+            color: #fff !important;
+        }
+
+        .hero p {
+            color: #86868b !important;
+            margin: 0 !important;
+        }
+
+        .separator {
+            border: 0;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(139, 90, 43, 0.3), transparent);
+            margin: 0;
+        }
+
+        /* Секции */
+        section {
+            max-width: 800px;
+            margin: 0 auto !important;
+            padding: 40px 20px !important;
+            background: none !important;
+        }
+
+        section h2 {
+            font-size: 22px !important;
+            color: #e5a93b !important;
+            border-left: 4px solid #3a86ff !important;
+            padding-left: 12px;
+            margin-bottom: 20px;
+        }
+
+        /* Сетка "О стране" */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px;
+        }
+
+        .info-card {
+            background: #161617 !important;
+            padding: 15px !important;
+            border-radius: 12px !important;
+            border: 1px solid #222224 !important;
+        }
+
+        .info-card strong {
+            color: #86868b !important;
+            display: block;
+            font-size: 11px;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .info-card span {
+            font-size: 16px;
+            font-weight: 600;
+            color: #fff !important;
+        }
+
+        .info-card.highlight {
+            background: linear-gradient(135deg, #161617 0%, #241a10 100%) !important;
+            border: 1px solid rgba(229, 169, 59, 0.4) !important;
+        }
+        .info-card.highlight span {
+            color: #e5a93b !important;
+        }
+
+        /* Блок ЕПИ */
+        .party-container {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: linear-gradient(145deg, #0f1222 0%, #070914 100%) !important;
+            padding: 20px !important;
+            border-radius: 16px !important;
+            border: 1px solid rgba(58, 134, 255, 0.2) !important;
+        }
+
+        /* ОГРАНИЧЕНИЕ ДЛЯ ЛОГОТИПА ПАРТИИ */
+        .party-logo-wrapper {
+            flex-shrink: 0;
+            max-width: 110px !important; /* Уменьшили до аккуратного размера */
+            width: 100%;
+        }
+
+        .party-logo {
+            width: 100% !important;
+            height: auto !important;
+            border-radius: 50% !important;
+            border: 2px solid #3a86ff !important;
+            box-shadow: 0 5px 15px rgba(58, 134, 255, 0.3) !important;
+            transition: transform 0.3s ease;
+        }
+
+        .party-container:hover .party-logo {
+            transform: scale(1.08) rotate(3deg);
+        }
+
+        .party-text {
+            font-size: 15px;
+            color: #e3e3e8 !important;
+        }
+
+        /* Анимация появления при загрузке */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animated-fade {
+            animation: fadeInUp 0.6s ease-out both;
+        }
+
+        #about { animation-delay: 0.1s; }
+        #party { animation-delay: 0.2s; }
+        #gallery { animation-delay: 0.3s; }
+        #history { animation-delay: 0.4s; }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #68686e !important;
+            font-size: 13px;
+            border-top: 1px solid #1c1c1e !important;
+        }
+
+        /* Адаптация под мобильные телефоны */
+        @media (max-width: 600px) {
+            .header-container {
+                flex-direction: column;
+                gap: 10px;
+            }
+            nav a {
+                margin: 0 7px;
+            }
+            .party-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            .party-logo-wrapper {
+                max-width: 95px !important;
+            }
+        }
+    </style>
 </head>
 <body>
 
@@ -57,7 +278,7 @@
 
     <section id="gallery" class="animated-fade">
         <h2>Галерея</h2>
-        <p>Раздел находится в наполнении министерством культуры Идиаканта. Ожидайте официальные фотоматериалы.</p>
+        <p>Раздел находится в наполнении министерством культуры Идиаканта.</p>
     </section>
 
     <section id="history" class="animated-fade">
