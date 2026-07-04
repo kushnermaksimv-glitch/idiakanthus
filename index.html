@@ -114,16 +114,28 @@
 
         /* СТИЛИ ВКЛАДКИ ПРАВИТЕЛЬСТВО */
         .assistant-box {
-            background: #141416;
-            padding: 20px;
+            background: linear-gradient(135deg, #1c150e 0%, #141416 100%);
+            padding: 25px;
             border-radius: 16px;
-            border: 1px solid #222224;
-            margin-bottom: 30px;
+            border: 1px solid rgba(229, 169, 59, 0.3);
+            margin-bottom: 35px;
             text-align: center;
         }
         .assistant-img-wrapper { max-width: 400px; width: 100%; margin: 0 auto 15px; }
         .assistant-img { width: 100%; height: auto; border-radius: 12px; border: 1px solid #333; }
         
+        .deputy-achievements {
+            background: rgba(58, 134, 255, 0.1);
+            border: 1px solid rgba(58, 134, 255, 0.3);
+            border-radius: 8px;
+            padding: 12px;
+            margin-top: 15px;
+            text-align: left;
+            font-size: 14px;
+        }
+        .deputy-achievements ul { margin: 5px 0 0 0; padding-left: 20px; color: #e3e3e8; }
+        .deputy-achievements li { margin-bottom: 4px; }
+
         .founders-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -143,7 +155,7 @@
         .founder-role { color: #e5a93b; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
         .founder-desc { color: #a1a1a6; font-size: 14px; margin: 0; line-height: 1.4; }
 
-        /* СТИЛИ ОБНОВЛЕННОЙ ГАЛЕРЕИ ГОРОДА */
+        /* СТИЛИ ГАЛЕРЕИ ГОРОДА */
         .city-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -241,17 +253,28 @@
         </div>
     </div>
 
-    <!-- ВКЛАДКА 3: ПРАВИТЕЛЬСТВО (ПОМОЩНИКИ ТУТ) -->
+    <!-- ВКЛАДКА 3: ПРАВИТЕЛЬСТВО -->
     <div id="gov-tab" class="tab-content">
         <section>
             <h2>Руководство и Помощники Государства</h2>
             
+            <!-- ОРАНЖЕВЫЙ ДЕПУТАТ ТУТ -->
             <div class="assistant-box">
                 <div class="assistant-img-wrapper">
-                    <img src="1000068255.jpg" alt="Главный Помощник Лидера" class="assistant-img">
+                    <img src="1000068255.jpg" alt="Главный Депутат Оранж" class="assistant-img">
                 </div>
-                <h3>Главный помощник лидера Республики</h3>
-                <p style="color: #a1a1a6; margin: 0; font-size: 14px;">Верховный Помощник (Оранжевый Стикмен), координирующий оборону и управление Идиакантом.</p>
+                <h3>Оранж — Народный Депутат Республики</h3>
+                <p style="color: #e5a93b; font-weight: 700; font-size: 15px; margin: 5px 0;">Председатель Комитета по Цифровому Развитию и Благу Народа</p>
+                <p style="color: #a1a1a6; margin: 0; font-size: 14px;">Легендарный Оранжевый Стикмен, перешедший на прямую службу обществу. Тот самый политик, который реально работает на благо каждого гражданина Идиаканта.</p>
+                
+                <div class="deputy-achievements">
+                    <strong>⚡ Главные заслуги Депутата Оранжа:</strong>
+                    <ul>
+                        <li>Проведена глобальная цифровая реформа: <strong>полностью разблокированы все иностранные сервисы</strong> на территории Идиаканта без замедлений!</li>
+                        <li>Круглосуточно пашет на благо государства, развивая инфраструктуру Идиаграда.</li>
+                        <li>Лично контролирует стабильный интернет и открытый доступ к мировым знаниям для всех котиков республики.</li>
+                    </ul>
+                </div>
             </div>
 
             <h2 style="font-size: 18px; color: #fff; border-left: 4px solid #e5a93b;">Выдающиеся деятели и основатели</h2>
@@ -290,16 +313,14 @@
         </section>
     </div>
 
-    <!-- ВКЛАДКА 4: ГАЛЕРЕЯ (ФОТО ИЗ ГОРОДА) -->
+    <!-- ВКЛАДКА 4: ГАЛЕРЕЯ (ЧИСТАЯ ДЛЯ ГОРОДА) -->
     <div id="gallery-tab" class="tab-content">
         <section>
             <h2>Архитектура и Виды Идиаграда</h2>
             <p>Фотоотчёты с улиц нашей столицы и государственных объектов.</p>
             
             <div class="city-grid">
-                <!-- Карточка города 1 -->
                 <div class="city-card">
-                    <!-- Замените city1.jpg на реальное название картинки, когда сделаете скриншот -->
                     <div class="city-img-placeholder">[ Место для фото: Центральная Площадь ]</div>
                     <div class="city-card-info">
                         <h4>Центр Идиаграда</h4>
@@ -307,9 +328,7 @@
                     </div>
                 </div>
 
-                <!-- Карточка города 2 -->
                 <div class="city-card">
-                    <!-- Замените city2.jpg на реальное название картинки -->
                     <div class="city-img-placeholder">[ Место для фото: Военный Аэродром ВВС ]</div>
                     <div class="city-card-info">
                         <h4>База Военно-Воздушных Сил</h4>
@@ -331,14 +350,14 @@
                     <p class="timeline-desc">Древние племена здешних земель объединились вокруг Первого Кота в черных очках. Именно тогда были заложены основы Котизма.</p>
                 </div>
                 <div class="timeline-item">
-                    <div class="timeline-date">Великий Альянс</div>
-                    <h3 class="timeline-title">Прибытие Главного Помощника</h3>
-                    <p class="timeline-desc">В период внешних угроз на помощь Республике прибыл легендарный Оранжевый Стикмен, закрепив за собой статус Главного помощника Лидера.</p>
+                    <div class="timeline-date">Цифровая Революция Оранжа</div>
+                    <h3 class="timeline-title">Оранж становится Народным Депутатом</h3>
+                    <p class="timeline-desc">Главный помощник Оранж официально избран в Парламент. Своим первым же историческим указом он снял блокировки со всех иностранных сервисов, направив все свои силы на обеспечение свободы слова, качественной связи и реальную работу ради блага граждан.</p>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-date">Современность</div>
                     <h3 class="timeline-title">Создание ЕПИ и Модернизация</h3>
-                    <p class="timeline-desc">Сформирована Единая Партия Идиаканта (ЕПИ). Под её руководством Идиаград превратился в неприступную цифровую крепость.</p>
+                    <p class="timeline-desc">Сформирована Единая Партия Идиаканта (ЕПИ). Под её руководством Идиаград превратился в неприступную цифровую крепость с полностью свободным и открытым интернетом.</p>
                 </div>
             </div>
         </section>
