@@ -90,25 +90,37 @@
 
         section h2 { font-size: 22px !important; color: #e5a93b !important; border-left: 4px solid #3a86ff !important; padding-left: 12px; margin-bottom: 20px; }
 
-        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; }
-        .info-card { background: #161617 !important; padding: 15px !important; border-radius: 12px !important; border: 1px solid #222224 !important; }
-        .info-card strong { color: #86868b !important; display: block; font-size: 11px; text-transform: uppercase; margin-bottom: 4px; }
-        .info-card span { font-size: 16px; font-weight: 600; color: #fff !important; }
-        .info-card.highlight { background: linear-gradient(135deg, #161617 0%, #241a10 100%) !important; border: 1px solid rgba(229, 169, 59, 0.4) !important; }
-        .info-card.highlight span { color: #e5a93b !important; }
+        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; }
         
-        /* Кликабельная карточка валюты */
-        .info-card.clickable {
+        /* ВСЕ КАРТОЧКИ ТЕПЕРЬ КЛИКАБЕЛЬНЫЕ */
+        .info-card { 
+            background: #161617 !important; 
+            padding: 15px !important; 
+            border-radius: 12px !important; 
+            border: 1px solid #222224 !important;
             cursor: pointer;
             transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
         }
-        .info-card.clickable:hover {
+        .info-card:hover {
             transform: translateY(-2px);
             border-color: #3a86ff !important;
             box-shadow: 0 5px 15px rgba(58, 134, 255, 0.2);
         }
+        .info-card strong { color: #86868b !important; display: block; font-size: 11px; text-transform: uppercase; margin-bottom: 4px; }
+        .info-card span { font-size: 16px; font-weight: 600; color: #fff !important; }
+        
+        /* Выделенная карточка Идеологии */
+        .info-card.highlight { 
+            background: linear-gradient(135deg, #161617 0%, #241a10 100%) !important; 
+            border: 1px solid rgba(229, 169, 59, 0.4) !important; 
+        }
+        .info-card.highlight:hover {
+            border-color: #e5a93b !important;
+            box-shadow: 0 5px 15px rgba(229, 169, 59, 0.2);
+        }
+        .info-card.highlight span { color: #e5a93b !important; }
 
-        /* МОДАЛЬНОЕ ОКНО ДЛЯ ВАЛЮТЫ */
+        /* УНИВЕРСАЛЬНОЕ МОДАЛЬНОЕ ОКНО */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -158,15 +170,17 @@
         }
         .close-modal:hover { color: #fff; }
         
-        .currency-img-wrapper {
+        .modal-img-wrapper {
             width: 100%;
+            height: 220px;
             margin: 15px 0;
             border-radius: 10px;
             overflow: hidden;
             border: 1px solid #333;
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            background: #222;
         }
-        .currency-img { width: 100%; height: auto; display: block; }
+        .modal-img { width: 100%; height: 100%; object-fit: cover; display: block; }
         .modal-content h3 { margin: 5px 0; color: #e5a93b; font-size: 22px; }
         .modal-content p { color: #a1a1a6; font-size: 14px; line-height: 1.5; margin: 10px 0 0; text-align: left; }
 
@@ -317,29 +331,39 @@
         <section>
             <h2>О стране</h2>
             <div class="info-grid">
-                <div class="info-card"><strong>Столица:</strong> <span>Идиаград</span></div>
-                <div class="info-card"><strong>Язык:</strong> <span>Идиакантский</span></div>
-                <!-- КЛИКАБЕЛЬНАЯ ВАЛЮТА — ИДИАКАНТИЙ -->
-                <div class="info-card clickable" onclick="toggleModal(true)" title="Нажмите, чтобы увидеть купюру">
-                    <strong>Валюта (Нажми!):</strong> <span>Идиакантий 🪙</span>
+                <!-- СТОЛИЦА -->
+                <div class="info-card" onclick="showInfo('capital')" title="Нажмите, чтобы узнать подробнее">
+                    <strong>Столица:</strong> <span>Идиаград 🏙️</span>
                 </div>
-                <div class="info-card"><strong>Форма правления:</strong> <span>Республика</span></div>
-                <div class="info-card highlight"><strong>Идеология:</strong> <span>Котизм 🐾</span></div>
+                <!-- ЯЗЫК -->
+                <div class="info-card" onclick="showInfo('language')" title="Нажмите, чтобы узнать подробнее">
+                    <strong>Язык:</strong> <span>Идиакантский 🗣️</span>
+                </div>
+                <!-- ВАЛЮТА -->
+                <div class="info-card" onclick="showInfo('currency')" title="Нажмите, чтобы узнать подробнее">
+                    <strong>Валюта:</strong> <span>Идиакантий 🪙</span>
+                </div>
+                <!-- ФОРМА ПРАВЛЕНИЯ -->
+                <div class="info-card" onclick="showInfo('goverment')" title="Нажмите, чтобы узнать подробнее">
+                    <strong>Форма правления:</strong> <span>Республика ⚖️</span>
+                </div>
+                <!-- ИДЕОЛОГИЯ -->
+                <div class="info-card highlight" onclick="showInfo('ideology')" title="Нажмите, чтобы узнать подробнее">
+                    <strong>Идеология:</strong> <span>Котизм 🐾</span>
+                </div>
             </div>
         </section>
     </div>
 
-    <!-- ВСПЛЫВАЮЩЕЕ ОКНО ВАЛЮТЫ -->
-    <div id="currency-modal" class="modal-overlay" onclick="toggleModal(false)">
+    <!-- УНИВЕРСАЛЬНОЕ ВСПЛЫВАЮЩЕЕ ОКНО -->
+    <div id="info-modal" class="modal-overlay" onclick="closeModal()">
         <div class="modal-content" onclick="event.stopPropagation()">
-            <button class="close-modal" onclick="toggleModal(false)">×</button>
-            <h3>Национальная валюта: Идиакантий</h3>
-            <div class="currency-img-wrapper">
-                <!-- Название файла картинки изменено на idiakanti_currency.png -->
-                <img src="idiakanti_currency.png" alt="Государственная банкнота — 100 Идиакантиев" class="currency-img">
+            <button class="close-modal" onclick="closeModal()">×</button>
+            <h3 id="modal-title">Название</h3>
+            <div class="modal-img-wrapper">
+                <img id="modal-img" src="" alt="Изображение" class="modal-img">
             </div>
-            <p><strong>«Идиакантий»</strong> — стабильное платёжное средство нашей Республики. Валюта полностью обеспечена золотовалютным фондом и мощностью оборонного комплекса страны.</p>
-            <p style="margin-top: 5px;">На лицевой стороне банкноты номиналом 100 Идиакантиев изображён Первый Кот в очках. Купюра имеет высшую степень защиты от подделок.</p>
+            <div id="modal-text"></div>
         </div>
     </div>
 
@@ -351,7 +375,7 @@
             </div>
             <h2>Единая Партия Идиакантии</h2>
             <div class="party-card">
-                <p><strong>Единая Партия Идиакантии (ЕПИ)</strong> — ведущая политическая сила государства, твёрдо стоящая на страже суверенитета и процветания нашей Родины.</p>
+                <p><strong>Единая Партия Идиакантии (ЕПИ)</strong> — ведущая political сила государства, твёрдо стоящая на страже суверенитета и процветания нашей Родины.</p>
                 <p>Главный вектор партии направлен на полную защиту национальных интересов, масштабное развитие оборонной авиации и поддержание нерушимого порядка на улицах Идиаграда.</p>
             </div>
         </div>
@@ -401,7 +425,71 @@
                 </div>
             </div>
 
-            <h2 style="font-size: 18px; color: #fff; border-left: 4px solid #e5a93b;">Кабинет Министров и Силовой Блок</h2>
+            <h2 style="font-size: 18px; color: #fff; border-left: 4px solid #e5a93b;">Кабинет
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ Министров и Силовой Блок</h2>
             <div class="founders-grid">
                 <div class="founder-card">
                     <div class="founder-img-wrapper"><img src="1000068259.jpg" alt="4Orochka" class="founder-img"></div>
@@ -485,6 +573,35 @@
 </footer>
 
 <script>
+    // База данных для интерактивных карточек
+    const infoData = {
+        capital: {
+            title: "Столица: Идиаград",
+            img: "idiagrad.jpg", // Сюда положите фото города
+            text: "<p><strong>Идиаград</strong> — сердце нашей Республики, ультрасовременный мегаполис и технологический центр страны. Город спроектирован лучшими архитекторами под руководством Министерства Строительства.</p><p>Здесь гармонично сочетаются монументальные правительственные здания, передовые серверные станции обеспечения связи и зелёные парковые зоны для отдыха граждан.</p>"
+        },
+        language: {
+            title: "Государственный язык",
+            img: "language.png", // Сюда фото языковой символики или документов
+            text: "<p><strong>Идиакантский язык</strong> — официальный язык общения в Республике Идиакантия.</p><p>Он олицетворяет культурную идентичность нашего народа, отличается высокой точностью формулировок и используется во всех государственных структурах, законодательных актах Государственной Думы и образовательных учреждениях.</p>"
+        },
+        currency: {
+            title: "Национальная валюта: Идиакантий",
+            img: "idiakanti_currency.png", // Ваша банкнота
+            text: "<p><strong>«Идиакантий»</strong> — стабильное платёжное средство нашей Республики. Валюта полностью обеспечена золотовалютным фондом и мощностью оборонного комплекса страны.</p><p>На лицевой стороне банкноты номиналом 100 Идиакантиев изображён Первый Кот в очках. Купюра имеет высшую степень защиты от подделок.</p>"
+        },
+        goverment: {
+            title: "Форма правления: Республика",
+            img: "government.jpg", // Сюда фото парламента или герба
+            text: "<p>Республиканский строй Идиакантии базируется на четком разделении властей и эффективном народном представительстве.</p><p>Законодательные функции исполняет Государственная Дума во главе с Председателем Банана Котом, а исполнительная власть и связь с общественностью координируются Комитетами под надзором Депутата Оранжа.</p>"
+        },
+        ideology: {
+            title: "Государственная идеология: Котизм",
+            img: "ideology.jpg", // Сюда фото, связанное с Котизмом
+            text: "<p><strong>Котизм</strong> — фундаментальная философская и государственная доктрина Идиакантии.</p><p>В её основе лежат принципы всеобщего цифрового равенства, защиты прав каждого жителя, поддержания нерушимого порядка, стремления к технологическому прогрессу, а также искреннее почтение к историческому наследию Первого Кота.</p>"
+        }
+    };
+
     // Переключение вкладок
     function openTab(tabId, button) {
         const tabs = document.querySelectorAll('.tab-content');
@@ -500,14 +617,24 @@
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // Управление модальным окном валюты
-    function toggleModal(show) {
-        const modal = document.getElementById('currency-modal');
-        if (show) {
+    // Открытие модального окна с динамическим контентом
+    function showInfo(key) {
+        const modal = document.getElementById('info-modal');
+        const data = infoData[key];
+        
+        if (data) {
+            document.getElementById('modal-title').innerText = data.title;
+            document.getElementById('modal-img').src = data.img;
+            document.getElementById('modal-img').alt = data.title;
+            document.getElementById('modal-text').innerHTML = data.text;
+            
             modal.classList.add('active');
-        } else {
-            modal.classList.remove('active');
         }
+    }
+
+    // Закрытие модального окна
+    function closeModal() {
+        document.getElementById('info-modal').classList.remove('active');
     }
 </script>
 
