@@ -96,8 +96,81 @@
         .info-card span { font-size: 16px; font-weight: 600; color: #fff !important; }
         .info-card.highlight { background: linear-gradient(135deg, #161617 0%, #241a10 100%) !important; border: 1px solid rgba(229, 169, 59, 0.4) !important; }
         .info-card.highlight span { color: #e5a93b !important; }
+        
+        /* Кликабельная карточка валюты */
+        .info-card.clickable {
+            cursor: pointer;
+            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+        .info-card.clickable:hover {
+            transform: translateY(-2px);
+            border-color: #3a86ff !important;
+            box-shadow: 0 5px 15px rgba(58, 134, 255, 0.2);
+        }
 
-        /* Стили Страны Партии */
+        /* МОДАЛЬНОЕ ОКНО ДЛЯ ВАЛЮТЫ */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .modal-content {
+            background: #161617;
+            border: 1px solid rgba(229, 169, 59, 0.4);
+            border-radius: 20px;
+            max-width: 450px;
+            width: 90%;
+            padding: 25px;
+            position: relative;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
+        }
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: #86868b;
+            font-size: 24px;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .close-modal:hover { color: #fff; }
+        
+        .currency-img-wrapper {
+            width: 100%;
+            margin: 15px 0;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #333;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        .currency-img { width: 100%; height: auto; display: block; }
+        .modal-content h3 { margin: 5px 0; color: #e5a93b; font-size: 22px; }
+        .modal-content p { color: #a1a1a6; font-size: 14px; line-height: 1.5; margin: 10px 0 0; text-align: left; }
+
+        /* Стили Страницы Партии */
         .party-page { text-align: center; padding: 40px 20px; }
         .party-logo-wrapper { max-width: 140px !important; margin: 0 auto 20px !important; }
         .party-logo { width: 100% !important; height: auto !important; border-radius: 50% !important; border: 3px solid #3a86ff !important; box-shadow: 0 10px 30px rgba(58, 134, 255, 0.3) !important; }
@@ -246,11 +319,28 @@
             <div class="info-grid">
                 <div class="info-card"><strong>Столица:</strong> <span>Идиаград</span></div>
                 <div class="info-card"><strong>Язык:</strong> <span>Идиакантский</span></div>
-                <div class="info-card"><strong>Валюта:</strong> <span>Иди</span></div>
+                <!-- КЛИКАБЕЛЬНАЯ ВАЛЮТА — ИДИАКАНТИЙ -->
+                <div class="info-card clickable" onclick="toggleModal(true)" title="Нажмите, чтобы увидеть купюру">
+                    <strong>Валюта (Нажми!):</strong> <span>Идиакантий 🪙</span>
+                </div>
                 <div class="info-card"><strong>Форма правления:</strong> <span>Республика</span></div>
                 <div class="info-card highlight"><strong>Идеология:</strong> <span>Котизм 🐾</span></div>
             </div>
         </section>
+    </div>
+
+    <!-- ВСПЛЫВАЮЩЕЕ ОКНО ВАЛЮТЫ -->
+    <div id="currency-modal" class="modal-overlay" onclick="toggleModal(false)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <button class="close-modal" onclick="toggleModal(false)">×</button>
+            <h3>Национальная валюта: Идиакантий</h3>
+            <div class="currency-img-wrapper">
+                <!-- Название файла картинки изменено на idiakanti_currency.png -->
+                <img src="idiakanti_currency.png" alt="Государственная банкнота — 100 Идиакантиев" class="currency-img">
+            </div>
+            <p><strong>«Идиакантий»</strong> — стабильное платёжное средство нашей Республики. Валюта полностью обеспечена золотовалютным фондом и мощностью оборонного комплекса страны.</p>
+            <p style="margin-top: 5px;">На лицевой стороне банкноты номиналом 100 Идиакантиев изображён Первый Кот в очках. Купюра имеет высшую степень защиты от подделок.</p>
+        </div>
     </div>
 
     <!-- ВКЛАДКА 2: ЕПИ -->
@@ -261,7 +351,7 @@
             </div>
             <h2>Единая Партия Идиакантии</h2>
             <div class="party-card">
-                <p><strong>Единая Партия Идиакантии (ЕПИ)</strong> — ведущая political сила государства, твёрдо стоящая на страже суверенитета и процветания нашей Родины.</p>
+                <p><strong>Единая Партия Идиакантии (ЕПИ)</strong> — ведущая политическая сила государства, твёрдо стоящая на страже суверенитета и процветания нашей Родины.</p>
                 <p>Главный вектор партии направлен на полную защиту национальных интересов, масштабное развитие оборонной авиации и поддержание нерушимого порядка на улицах Идиаграда.</p>
             </div>
         </div>
@@ -271,10 +361,7 @@
     <div id="gov-tab" class="tab-content">
         <section>
             <h2>Высшие Органы Власти Идиакантии</h2>
-            
-            <!-- ДВА ГЛАВНЫХ РУКОВОДИТЕЛЯ РЯДОМ -->
             <div class="gov-leadership-grid">
-                
                 <!-- БАНАНА КОТ - ГЛАВА ГОСДУМЫ -->
                 <div class="assistant-box">
                     <div>
@@ -288,7 +375,7 @@
                     <div class="deputy-achievements">
                         <strong>📜 Инициативы Председателя:</strong>
                         <ul>
-                            <li>Принят исторический «Закон о всеобщем цифровом равенстве».</li >
+                            <li>Принят исторический «Закон о всеобщем цифровом равенстве».</li>
                             <li>Утвердил государственные субсидии на развитие авиастроения и флота.</li>
                         </ul>
                     </div>
@@ -312,7 +399,6 @@
                         </ul>
                     </div>
                 </div>
-
             </div>
 
             <h2 style="font-size: 18px; color: #fff; border-left: 4px solid #e5a93b;">Кабинет Министров и Силовой Блок</h2>
@@ -350,7 +436,6 @@
         <section>
             <h2>Архитектура и Виды Идиаграда</h2>
             <p>Фотоотчёты с улиц нашей столицы и государственных объектов.</p>
-            
             <div class="city-grid">
                 <div class="city-card">
                     <div class="city-img-placeholder">[ Место для фото: Центральная Площадь ]</div>
@@ -359,7 +444,6 @@
                         <p>Главный проспект столицы, сочетающий величие Котизма и современные технологии.</p>
                     </div>
                 </div>
-
                 <div class="city-card">
                     <div class="city-img-placeholder">[ Место для фото: Военный Аэродром ВВС ]</div>
                     <div class="city-card-info">
@@ -384,12 +468,12 @@
                 <div class="timeline-item">
                     <div class="timeline-date">Парламентская Реформа</div>
                     <h3 class="timeline-title">Банана кот возглавляет Госдуму</h3>
-                    <p class="timeline-desc">В ходе реструктуризации органов власти Банана кот занял пост Председателя Государственной Думы, взяв под контроль создание справедливых законов. В этот же период Депутат Оранж провёл историческую реформу связи и разблокировал зарубежный интернет.</p>
+                    <p class="timeline-desc">В ходе реструктуризации органов власти Банана кот занял пост Председателя Административного Совета и Госдумы, взяв под контроль законы. В этот же период Депутат Оранж провёл реформу связи и открыл свободный доступ к интернету.</p>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-date">Современность</div>
                     <h3 class="timeline-title">Создание ЕПИ и Модернизация</h3>
-                    <p class="timeline-desc">Сформирована Единая Партия Идиакантии (ЕПИ). Под её руководством Идиаград превратился в неприступную цифровую крепость со свободными гражданами.</p>
+                    <p class="timeline-desc">Сформирована Единая Партия Идиакантии (ЕПИ). Под её руководством Идиаград превратился в современную и процветающую цифровую столицу.</p>
                 </div>
             </div>
         </section>
@@ -401,6 +485,7 @@
 </footer>
 
 <script>
+    // Переключение вкладок
     function openTab(tabId, button) {
         const tabs = document.querySelectorAll('.tab-content');
         tabs.forEach(tab => tab.classList.remove('active'));
@@ -413,6 +498,16 @@
         button.classList.add('active');
 
         window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Управление модальным окном валюты
+    function toggleModal(show) {
+        const modal = document.getElementById('currency-modal');
+        if (show) {
+            modal.classList.add('active');
+        } else {
+            modal.classList.remove('active');
+        }
     }
 </script>
 
