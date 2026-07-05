@@ -120,7 +120,7 @@
         }
         .info-card.highlight span { color: #e5a93b !important; }
 
-        /* Стили новой вкладки Законов */
+        /* Стили вкладки Законов */
         .laws-container {
             display: flex;
             flex-direction: column;
@@ -297,8 +297,8 @@
         /* Галерея */
         .city-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
             margin-top: 20px;
         }
         .city-card {
@@ -306,10 +306,15 @@
             border: 1px solid #222224;
             border-radius: 12px;
             overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
+        }
+        .city-card:hover {
+            transform: translateY(-5px);
         }
         .city-img-placeholder {
             width: 100%;
-            height: 180px;
+            height: 220px;
             background: #222;
             display: flex;
             justify-content: center;
@@ -318,9 +323,15 @@
             font-weight: bold;
             font-size: 14px;
         }
-        .city-card-info { padding: 12px; }
-        .city-card-info h4 { margin: 0 0 5px 0; color: #fff; font-size: 16px; }
-        .city-card-info p { margin: 0; color: #86868b; font-size: 13px; }
+        .city-img-actual {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+        }
+        .city-card-info { padding: 15px; }
+        .city-card-info h4 { margin: 0 0 5px 0; color: #fff; font-size: 17px; }
+        .city-card-info p { margin: 0; color: #86868b; font-size: 13px; line-height: 1.4; }
 
         /* История */
         .timeline { position: relative; margin-top: 30px; padding-left: 20px; border-left: 2px solid #8b5a2b; }
@@ -488,7 +499,7 @@
         </section>
     </div>
 
-    <!-- НОВАЯ ВКЛАДКА 4: ЗАКОНЫ -->
+    <!-- ВКЛАДКА 4: ЗАКОНЫ -->
     <div id="laws-tab" class="tab-content">
         <section>
             <h2>Конституция и Правила Республики Идиакантия</h2>
@@ -515,9 +526,18 @@
     <!-- ВКЛАДКА 5: ГАЛЕРЕЯ -->
     <div id="gallery-tab" class="tab-content">
         <section>
-            <h2>Архитектура и Виды Идиаграда</h2>
-            <p>Фотоотчёты с улиц нашей столицы и государственных объектов.</p>
+            <h2>Архитектура и Научные Достижения Идиакантии</h2>
+            <p>Фотоотчёты со значимых государственных объектов, улиц нашей столицы и научно-исследовательских центров.</p>
             <div class="city-grid">
+                <!-- КАРТОЧКА С НАШЕЙ НОВОЙ ФОТОГРАФИЕЙ -->
+                <div class="city-card">
+                    <img src="1783247588954.png" alt="Диорама Идиаканты в глубоководной зоне" class="city-img-actual">
+                    <div class="city-card-info">
+                        <h4>Музей Океанографии: Стенд «Идиаканты»</h4>
+                        <p>Государственная диорама в Идиаграде, демонстрирующая уникальных светящихся глубоководных хищников (иоланд), названных в честь нашей великой Республики.</p>
+                    </div>
+                </div>
+                <!-- Другие карточки -->
                 <div class="city-card">
                     <div class="city-img-placeholder">[ Место для фото: Центральная Площадь ]</div>
                     <div class="city-card-info">
