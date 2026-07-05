@@ -26,24 +26,15 @@
         }
 
         .header-container {
-            max-width: 1150px;
+            max-width: 1050px;
             margin: 0 auto;
             padding: 15px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap;
-            gap: 15px;
         }
 
         .logo { font-size: 20px; margin: 0; font-weight: 700; }
-
-        .nav-and-player {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
 
         nav button {
             background: none !important;
@@ -51,7 +42,7 @@
             color: #a1a1a6 !important;
             font-weight: 600;
             font-size: 15px;
-            margin-left: 10px;
+            margin-left: 15px;
             cursor: pointer;
             padding: 5px 0;
             font-family: inherit;
@@ -64,61 +55,6 @@
         }
         nav button.active {
             border-bottom: 2px solid #3a86ff !important;
-        }
-
-        /* Стильный Культурный Аудиоплеер */
-        .cultural-player {
-            background: #1c1c1e;
-            border: 1px solid rgba(229, 169, 59, 0.3);
-            padding: 6px 12px;
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-        }
-
-        .cultural-player select {
-            background: #2c2c2e;
-            color: #fff;
-            border: none;
-            border-radius: 12px;
-            padding: 4px 8px;
-            font-size: 12px;
-            cursor: pointer;
-            outline: none;
-            max-width: 140px;
-        }
-
-        .player-btn {
-            background: #e5a93b;
-            border: none;
-            border-radius: 50%;
-            width: 32px;
-            height: 32px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            transition: transform 0.2s, background 0.2s;
-            padding: 0;
-        }
-        .player-btn:hover {
-            transform: scale(1.05);
-            background: #f1b957;
-        }
-        .player-btn img {
-            width: 14px;
-            height: 14px;
-            object-fit: contain;
-            /* Делает черные иконки белыми, чтобы они хорошо читались на золотом фоне кнопки */
-            filter: invert(1); 
-        }
-
-        .volume-slider {
-            width: 60px;
-            accent-color: #e5a93b;
-            cursor: pointer;
         }
 
         /* Контейнер для вкладок */
@@ -332,12 +268,6 @@
             border-radius: 12px;
             overflow: hidden;
         }
-        .city-card-img {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            display: block;
-        }
         .city-img-placeholder {
             width: 100%;
             height: 180px;
@@ -363,9 +293,8 @@
 
         footer { text-align: center; padding: 30px; color: #68686e !important; font-size: 13px; border-top: 1px solid #1c1c1e !important; margin-top: 60px; }
 
-        @media (max-width: 900px) {
-            .header-container { flex-direction: column; align-items: center; text-align: center; }
-            .nav-and-player { flex-direction: column; width: 100%; gap: 10px; }
+        @media (max-width: 768px) {
+            .header-container { flex-direction: column; gap: 10px; }
             nav button { margin: 0 4px; font-size: 13px; }
             .gov-leadership-grid { grid-template-columns: 1fr; }
         }
@@ -376,38 +305,18 @@
 <header>
     <div class="header-container">
         <h1 class="logo">🇮🇩 Республика Идиакантия</h1>
-        <div class="nav-and-player">
-            <nav>
-                <button class="nav-btn active" onclick="openTab('country-tab', this)">О стране</button>
-                <button class="nav-btn" onclick="openTab('party-tab', this)">ЕПИ</button>
-                <button class="nav-btn" onclick="openTab('gov-tab', this)">Правительство</button>
-                <button class="nav-btn" onclick="openTab('gallery-tab', this)">Галерея</button>
-                <button class="nav-btn" onclick="openTab('history-tab', this)">История</button>
-            </nav>
-            
-            <!-- Интерактивный плеер культурного наследия -->
-            <div class="cultural-player">
-                <span style="font-size: 12px; color: #e5a93b; font-weight: bold;">📻 Культура:</span>
-                <select id="track-select" onchange="changeTrack()">
-                    <option value="11.m4a">Культура. Часть 1</option>
-                    <option value="12.m4a">Культура. Часть 2</option>
-                    <option value="13.m4a">Культура. Часть 3</option>
-                </select>
-                
-                <!-- Кнопка со встроенной иконкой Play (InShot_20260704_235212688.jpg) -->
-                <button id="play-pause-btn" class="player-btn" onclick="togglePlay()">
-                    <img id="btn-icon" src="InShot_20260704_235212688.jpg" alt="Play">
-                </button>
-                
-                <input type="range" class="volume-slider" min="0" max="1" step="0.1" value="0.5" oninput="setVolume(this.value)">
-                <!-- Атрибут preload="auto" помогает оптимизировать долгую загрузку -->
-                <audio id="global-audio" src="11.m4a" preload="auto"></audio>
-            </div>
-        </div>
+        <nav>
+            <button class="nav-btn active" onclick="openTab('country-tab', this)">О стране</button>
+            <button class="nav-btn" onclick="openTab('party-tab', this)">ЕПИ</button>
+            <button class="nav-btn" onclick="openTab('gov-tab', this)">Правительство</button>
+            <button class="nav-btn" onclick="openTab('gallery-tab', this)">Галерея</button>
+            <button class="nav-btn" onclick="openTab('history-tab', this)">История</button>
+        </nav>
     </div>
 </header>
 
 <main>
+    <!-- ВКЛАДКА 1: О СТРАНЕ -->
     <div id="country-tab" class="tab-content active">
         <div class="hero">
             <div class="flag-wrapper">
@@ -422,18 +331,23 @@
         <section>
             <h2>О стране</h2>
             <div class="info-grid">
+                <!-- СТОЛИЦА -->
                 <div class="info-card" onclick="showInfo('capital')" title="Нажмите, чтобы узнать подробнее">
                     <strong>Столица:</strong> <span>Идиаград 🏙️</span>
                 </div>
+                <!-- ЯЗЫК -->
                 <div class="info-card" onclick="showInfo('language')" title="Нажмите, чтобы узнать подробнее">
                     <strong>Язык:</strong> <span>Идиакантский 🗣️</span>
                 </div>
+                <!-- ВАЛЮТА -->
                 <div class="info-card" onclick="showInfo('currency')" title="Нажмите, чтобы узнать подробнее">
                     <strong>Валюта:</strong> <span>Идиакантий 🪙</span>
                 </div>
+                <!-- ФОРМА ПРАВЛЕНИЯ -->
                 <div class="info-card" onclick="showInfo('goverment')" title="Нажмите, чтобы узнать подробнее">
                     <strong>Форма правления:</strong> <span>Республика ⚖️</span>
                 </div>
+                <!-- ИДЕОЛОГИЯ -->
                 <div class="info-card highlight" onclick="showInfo('ideology')" title="Нажмите, чтобы узнать подробнее">
                     <strong>Идеология:</strong> <span>Котизма 🐾</span>
                 </div>
@@ -441,6 +355,7 @@
         </section>
     </div>
 
+    <!-- УНИВЕРСАЛЬНОЕ ВСПЛЫВАЮЩЕЕ ОКНО -->
     <div id="info-modal" class="modal-overlay" onclick="closeModal()">
         <div class="modal-content" onclick="event.stopPropagation()">
             <button class="close-modal" onclick="closeModal()">×</button>
@@ -452,6 +367,7 @@
         </div>
     </div>
 
+    <!-- ВКЛАДКА 2: ЕПИ -->
     <div id="party-tab" class="tab-content">
         <div class="party-page">
             <div class="party-logo-wrapper">
@@ -465,10 +381,12 @@
         </div>
     </div>
 
+    <!-- ВКЛАДКА 3: ПРАВИТЕЛЬСТВО -->
     <div id="gov-tab" class="tab-content">
         <section>
             <h2>Высшие Органы Власти Идиакантии</h2>
             <div class="gov-leadership-grid">
+                <!-- БАНАНА КОТ - ГЛАВА ГОСДУМЫ -->
                 <div class="assistant-box">
                     <div>
                         <div class="assistant-img-wrapper">
@@ -487,6 +405,7 @@
                     </div>
                 </div>
 
+                <!-- ОРАНЖЕВЫЙ ДЕПУТАТ -->
                 <div class="assistant-box" style="border-color: rgba(58, 134, 255, 0.3);">
                     <div>
                         <div class="assistant-img-wrapper">
@@ -517,7 +436,7 @@
                 <div class="founder-card">
                     <div class="founder-img-wrapper"><img src="1000068260.jpg" alt="Матроскин" class="founder-img"></div>
                     <h3>Матроскин</h3>
-                    <div class="founder-role">Министр Обороны</div>
+                    <div class="founder-role">Miniстр Обороны</div>
                     <p class="founder-desc">Возглавляет Кошачью Гвардию, отвечая за внутреннюю безопасность.</p>
                 </div>
                 <div class="founder-card">
@@ -528,7 +447,7 @@
                 </div>
                 <div class="founder-card">
                     <div class="founder-img-wrapper"><img src="1000068262.jpg" alt="Boeing" class="founder-img"></div>
-                    <h3>BoxLayout Ᏼᴏᴇing 737-800</h3>
+                    <h3>Ᏼᴏᴇing 737-800</h3>
                     <div class="founder-role">Главнокомандующий ВВС</div>
                     <p class="founder-desc">Обеспечивает стратегическое превосходство в воздушном пространстве.</p>
                 </div>
@@ -536,13 +455,14 @@
         </section>
     </div>
 
+    <!-- ВКЛАДКА 4: ГАЛЕРЕЯ -->
     <div id="gallery-tab" class="tab-content">
         <section>
             <h2>Архитектура и Виды Идиаграда</h2>
             <p>Фотоотчёты с улиц нашей столицы и государственных объектов.</p>
             <div class="city-grid">
                 <div class="city-card">
-                    <img src="IMG_20260704_230320_701.jpg" alt="Центральная Площадь Идиаграда" class="city-card-img">
+                    <div class="city-img-placeholder">[ Место для фото: Центральная Площадь ]</div>
                     <div class="city-card-info">
                         <h4>Центр Идиаграда</h4>
                         <p>Главный проспект столицы, сочетающий величие Котизма и современные технологии.</p>
@@ -559,6 +479,7 @@
         </section>
     </div>
 
+    <!-- ВКЛАДКА 5: ИСТОРИЯ -->
     <div id="history-tab" class="tab-content">
         <section>
             <h2>История Идиакантии</h2>
@@ -567,6 +488,11 @@
                     <div class="timeline-date">Эпоха Основания</div>
                     <h3 class="timeline-title">Зарождение Котизма</h3>
                     <p class="timeline-desc">Древние племена здешних земель объединились вокруг Первого Кота в черных очках. Именно тогда были заложены основы Котизма.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Законодательный Указ Госдумы</div>
+                    <h3 class="timeline-title">Запрет упоминания числа 67 🚫</h3>
+                    <p class="timeline-desc">Государственной Думой под председательством Банана Кота принят строжайший закон о запрете произношения и написания числа «шестьдесят семь». За первое нарушение гражданину грозит 12 суток колонии. Каждое последующее упоминание удваивает срок в геометрической прогрессии (12 суток, затем 24 суток, 48 суток и т.д.).</p>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-date">Парламентская Реформа</div>
@@ -588,54 +514,17 @@
 </footer>
 
 <script>
-    // Инициализация аудио элемента
-    const audioPlayer = document.getElementById('global-audio');
-    audioPlayer.volume = 0.5;
-
-    function togglePlay() {
-        const icon = document.getElementById('btn-icon');
-        if (audioPlayer.paused) {
-            audioPlayer.play();
-            // Меням картинку на Паузу (InShot_20260704_235138634.jpg)
-            icon.src = "InShot_20260704_235138634.jpg";
-            icon.alt = "Pause";
-        } else {
-            audioPlayer.pause();
-            // Меняем картинку на Плей (InShot_20260704_235212688.jpg)
-            icon.src = "InShot_20260704_235212688.jpg";
-            icon.alt = "Play";
-        }
-    }
-
-    function changeTrack() {
-        const select = document.getElementById('track-select');
-        const icon = document.getElementById('btn-icon');
-        
-        audioPlayer.src = select.value;
-        // Принудительно загружаем новый выбранный трек в кэш браузера
-        audioPlayer.load(); 
-        
-        // Если плеер уже воспроизводил музыку, автоматически запускаем новый трек
-        if (icon.alt === "Pause") {
-            audioPlayer.play();
-        }
-    }
-
-    function setVolume(val) {
-        audioPlayer.volume = val;
-    }
-
     // База данных для интерактивных карточек со стандартными названиями фото
     const infoData = {
         capital: {
             title: "Столица: Идиаград",
-            img: "IMG_20260704_230320_701.jpg", 
+            img: "idiagrad.jpg",
             text: "<p><strong>Идиаград</strong> — сердце нашей Республики, ультрасовременный мегаполис и технологический центр страны. Город спроектирован лучшими архитекторами под руководством Министерства Строительства.</p><p>Здесь гармонично сочетаются монументальные правительственные здания, передовые серверные станции обеспечения связи и зелёные парковые зоны для отдыха граждан.</p>"
         },
         language: {
             title: "Государственный язык",
             img: "language.png",
-            text: "<p><strong>Идиакантский язык</strong> — официальный язык общения в Республики Идиакантия.</p><p>Он олицетворяет культурную идентичность нашего народа, отличается высокой точностью формулировок и используется во всех государственных структурах, законодательных актах Государственной Думы и образовательных учреждениях.</p>"
+            text: "<p><strong>Идиакантский язык</strong> — официальный язык общения в Республике Идиакантия.</p><p>Он олицетворяет культурную идентичность нашего народа, отличается высокой точностью формулировок и используется во всех государственных структурах, законодательных актах Государственной Думы и образовательных учреждениях.</p>"
         },
         currency: {
             title: "Национальная валюта: Идиакантий",
@@ -645,12 +534,12 @@
         goverment: {
             title: "Форма правления: Республика",
             img: "government.jpg",
-            text: "<p>Республиканский строй Идиакантии базируется на четком разделении властей и эффективном народном представительстве.</p><p>Законодательные функции исполняет Государственная Дума во главе с Председателем Банана Котом, а исполнительная власть и связь с общественностью координируются Комитетами под надзором Депутата Оранжа.</p>"
+            text: "<p>Республиканский строй Идиакантии базируется на четком разделении властей и эффективном народном представительстве.</p><p>Законодательные функции исполняет Государственная Дума во главе с Председателем Банана Котом. В стране действует строгий правопорядок. Например, принят жесткий <strong>закон против упоминания запрещенного числа (после 66)</strong>, нарушение которого карается 12 сутками колонии с последующим удвоением срока (2X за каждый повтор: 12 суток, 24 суток и далее).</p>"
         },
         ideology: {
             title: "Государственная идеология: Котизма",
             img: "ideology.jpg",
-            text: "<p><strong>Котизма</strong> — фундаментальная философская и государственная доктрина Идиакантии, выражающаяся в <strong>почитании котов</strong>.</p><p>В её основе лежат принципы всеобщего цифрового равенства, защиты прав каждого жителя, поддержания нерушимого порядка, стремления к технологическому прогрессу, а также искреннее почтение к историческому наследию Первого Кота.</p>"
+            text: "<p><strong>Котизм</strong> — фундаментальная философская и государственная доктрина Идиакантии, выражающаяся в <strong>почитании котов</strong>.</p><p>В её основе лежат принципы всеобщего цифрового равенства, защиты прав каждого жителя, поддержания нерушимого порядка, стремления к технологическому прогрессу, а также искреннее почтение к историческому наследию Первого Кота.</p>"
         }
     };
 
